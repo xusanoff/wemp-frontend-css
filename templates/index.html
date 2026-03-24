@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        #result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CSS Knowledge Test (30 Questions)</h1>
+
+    <form id="quiz">
+
+        <!-- QUESTIONS -->
+        <script>
+            const questions = [
+                ["CSS nima uchun ishlatiladi?", ["Sayt dizayni uchun", "Backend uchun", "Server sozlash", "Ma'lumot saqlash"], 0],
+                ["CSS ni qayerda yozish mumkin?", ["HTML ichida", "Alohida faylda", "Inline", "Hammasi"], 3],
+                ["Class selector qaysi belgi bilan yoziladi?", ["#", ".", "*", "@"], 1],
+                ["ID selector qaysi belgi bilan?", ["@", ".", "#", "%"], 2],
+                ["RGB rang modeli nechta qiymatdan iborat?", ["2", "3", "4", "5"], 1],
+                ["Hex rang #fff nimani bildiradi?", ["Qora", "Oq", "Qizil", "Ko‘k"], 1],
+                ["px bu qanday birlik?", ["Nisbiy", "Foiz", "Absolyut", "Vaqt"], 2],
+                ["em nimaga bog‘liq?", ["Ekran o‘lchami", "Parent font-size", "HTML", "Body"], 1],
+                ["Box model tarkibiga kirmaydi:", ["Margin", "Border", "Padding", "Color"], 3],
+                ["padding nimani anglatadi?", ["Tashqi bo‘shliq", "Ichki bo‘shliq", "Chegara", "Shrift"], 1],
+                ["font-weight nima qiladi?", ["Rang beradi", "Qalinlik", "O‘lcham", "Oraliq"], 1],
+                ["text-align: center nima qiladi?", ["Matnni yashiradi", "Markazga joylaydi", "O‘ngga suradi", "Chapga"], 1],
+                ["Link hover qaysi pseudo-class?", [":active", ":hover", ":focus", ":visited"], 1],
+                ["list-style-type none nima qiladi?", ["Listni yashiradi", "Marker olib tashlaydi", "Font o‘zgartiradi", "Margin"], 1],
+                ["display: none nima qiladi?", ["Joy egallaydi", "Yashiradi", "Ko‘rinadi", "Qotiradi"], 1],
+                ["inline element width qabul qiladimi?", ["Ha", "Yo‘q", "Ba'zida", "Faqat mobile"], 1],
+                ["float nima uchun ishlatiladi?", ["Animatsiya", "Joylash", "Rang", "Shrift"], 1],
+                ["clear: both nima qiladi?", ["Float qo‘shadi", "Float tozalaydi", "O‘chadi", "Yashiradi"], 1],
+                ["column-count nima qiladi?", ["Flex qiladi", "Grid qiladi", "Matnni ustunlarga bo‘ladi", "Rang"], 2],
+                ["position: absolute nimaga bog‘liq?", ["Body", "Viewport", "Eng yaqin positioned parent", "HTML"], 2],
+                ["position: fixed qayerga bog‘liq?", ["Body", "Viewport", "Parent", "Div"], 1],
+                ["Flexbox qaysi yo‘nalishda ishlaydi?", ["2D", "3D", "1D", "4D"], 2],
+                ["justify-content nima qiladi?", ["Vertikal", "Gorizontal joylash", "Shrift", "Rang"], 1],
+                ["Grid nechta o‘lchamda ishlaydi?", ["1", "2", "3", "4"], 1],
+                ["grid-template-columns nima qiladi?", ["Qator", "Ustun", "Rang", "Margin"], 1],
+                ["img responsive qilish uchun qaysi usul to‘g‘ri?", ["width: 100%", "height: 100%", "fixed px", "none"], 0],
+                ["Media query qachon ishlaydi?", ["Har doim", "Shart bajarilganda", "JS bilan", "Serverda"], 1],
+                ["CSS variable qaysi belgi bilan boshlanadi?", ["#", "$", "--", "@"], 2],
+                ["calc() nima uchun?", ["Rang", "Hisoblash", "Animatsiya", "Shrift"], 1],
+                ["@keyframes nima uchun?", ["Flex", "Grid", "Animation", "Media"], 2],
+            ];
+
+            document.write(
+                questions.map((q, i) => `
+                <div class="question">
+                    <h3>${i+1}. ${q[0]}</h3>
+                    ${q[1].map((opt, idx) => `
+                        <label>
+                            <input type="radio" name="q${i}" value="${idx}">
+                            ${opt}
+                        </label>
+                    `).join("")}
+                </div>
+                `).join("")
+            );
+        </script>
+
+        <button type="button" onclick="checkResult()">Testni yakunlash</button>
+        <div id="result"></div>
+    </form>
+</div>
+
+<script>
+    function checkResult() {
+        let score = 0;
+        questions.forEach((q, i) => {
+            const answer = document.querySelector(`input[name="q${i}"]:checked`);
+            if (answer && parseInt(answer.value) === q[2]) {
+                score++;
+            }
+        });
+        document.getElementById("result").innerText =
+            `Natija: ${score} / 30 (${Math.round(score / 30 * 100)}%)`;
+    }
+</script>
+
+</body>
+</html>
